@@ -1,0 +1,9 @@
+d:\users\dell\documents\visual studio 2012\Projects\informationsafety\test\bin\Debug\test.exe.config
+d:\users\dell\documents\visual studio 2012\Projects\informationsafety\test\bin\Debug\test.exe
+d:\users\dell\documents\visual studio 2012\Projects\informationsafety\test\bin\Debug\test.pdb
+d:\users\dell\documents\visual studio 2012\Projects\informationsafety\test\obj\Debug\test.csprojResolveAssemblyReference.cache
+d:\users\dell\documents\visual studio 2012\Projects\informationsafety\test\obj\Debug\test.exe
+d:\users\dell\documents\visual studio 2012\Projects\informationsafety\test\obj\Debug\test.pdb
+D:\users\dell\documents\visual studio 2012\Projects\informationsecurity\test\bin\Debug\test.exe.config
+D:\users\dell\documents\visual studio 2012\Projects\informationsecurity\test\obj\Debug\test.exe
+D:\users\dell\documents\visual studio 2012\Projects\informationsecurity\test\obj\Debug\test.csprojResolveAssemblyReference.cache
