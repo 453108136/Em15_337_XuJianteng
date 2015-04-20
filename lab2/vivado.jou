@@ -1,0 +1,81 @@
+#-----------------------------------------------------------
+# Vivado v2013.4 (64-bit)
+# SW Build 353583 on Mon Dec  9 17:49:19 MST 2013
+# IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
+# Start of session at: Mon Apr 20 20:33:54 2015
+# Process ID: 7824
+# Log file: F:/emd/lab1/vivado.log
+# Journal file: F:/emd/lab1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {F:\emd\lab1\lab1.xpr}
+open_bd_design {F:/emd/lab1/lab1.srcs/sources_1/bd/system/system.bd}
+startgroup
+set_property -dict [list CONFIG.PCW_USE_M_AXI_GP0 {1} CONFIG.PCW_EN_CLK0_PORT {1} CONFIG.PCW_EN_RST0_PORT {1}] [get_bd_cells processing_system7_0]
+endgroup
+regenerate_bd_layout
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0
+endgroup
+set_property name sw [ get_bd_cells axi_gpio_0]
+set_property name sw_4bit [ get_bd_cells sw]
+startgroup
+set_property -dict [list CONFIG.C_GPIO_WIDTH {4} CONFIG.C_ALL_INPUTS {1}] [get_bd_cells sw_4bit]
+endgroup
+regenerate_bd_layout
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/processing_system7_0/M_AXI_GP0" }  [get_bd_intf_pins sw_4bit/S_AXI]
+regenerate_bd_layout
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0
+endgroup
+set_property name btns_4bit [ get_bd_cells axi_gpio_0]
+set_property -dict [list CONFIG.C_GPIO_WIDTH {4}] [get_bd_cells btns_4bit]
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/processing_system7_0/M_AXI_GP0" }  [get_bd_intf_pins btns_4bit/S_AXI]
+regenerate_bd_layout
+startgroup
+create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 GPIO
+connect_bd_intf_net [get_bd_intf_pins sw_4bit/GPIO] [get_bd_intf_ports /GPIO]
+endgroup
+startgroup
+create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 GPIO_1
+connect_bd_intf_net [get_bd_intf_pins btns_4bit/GPIO] [get_bd_intf_ports /GPIO_1]
+endgroup
+set_property name sw_4bit [ get_bd_intf_ports GPIO]
+set_property name btns_4bit [ get_bd_intf_ports GPIO_1]
+validate_bd_design
+make_wrapper -files [get_files F:/emd/lab1/lab1.srcs/sources_1/bd/system/system.bd] -top
+import_files -force -norecurse F:/emd/lab1/lab1.srcs/sources_1/bd/system/hdl/system_wrapper.vhd
+add_files -fileset constrs_1 -norecurse D:/gamedownload/【2015春】/Zybo开发实验/实验材料/lab2/lab2.xdc
+import_files -fileset constrs_1 D:/gamedownload/【2015春】/Zybo开发实验/实验材料/lab2/lab2.xdc
+save_bd_design
+launch_runs synth_1
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1
+wait_on_run synth_1
+open_run synth_1 -name netlist_1
+startgroup
+set_property package_pin Y16 [get_ports {btns_4bit_tri_io[3]}]
+endgroup
+set_property package_pin "" [get_ports [list  {btns_4bit_tri_io[2]}]]
+set_property iostandard LVCMOS18 [get_ports [list {btns_4bit_tri_io[3]}]]
+set_property iostandard LVCMOS33 [get_ports [list {btns_4bit_tri_io[3]} {btns_4bit_tri_io[2]} {btns_4bit_tri_io[1]} {btns_4bit_tri_io[0]}]]
+startgroup
+set_property package_pin V16 [get_ports {btns_4bit_tri_io[2]}]
+endgroup
+startgroup
+set_property package_pin P16 [get_ports {btns_4bit_tri_io[1]}]
+endgroup
+startgroup
+set_property package_pin R18 [get_ports {btns_4bit_tri_io[0]}]
+endgroup
+set_property target_constrs_file F:/emd/lab1/lab1.srcs/constrs_1/imports/lab2/lab2.xdc [current_fileset -constrset]
+save_constraints -force
+generate_target all [get_files  F:/emd/lab1/lab1.srcs/sources_1/bd/system/system.bd]
+reset_run impl_1
+launch_runs impl_1 -to_step write_bitstream
+wait_on_run impl_1
+close_design
+open_run impl_1
+export_hardware [get_files F:/emd/lab1/lab1.srcs/sources_1/bd/system/system.bd] [get_runs impl_1] -bitstream
+launch_sdk -bit F:/emd/lab1/lab1.sdk/SDK/SDK_Export/hw/system_wrapper.bit -workspace F:/emd/lab1/lab1.sdk/SDK/SDK_Export -hwspec F:/emd/lab1/lab1.sdk/SDK/SDK_Export/hw/system.xml
